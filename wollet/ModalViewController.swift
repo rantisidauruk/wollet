@@ -5,7 +5,6 @@
 //  Created by Ranti Sidauruk on 27/04/22.
 //
 
-//pakai delegate -> reportViewController
 
 import UIKit
 
@@ -15,30 +14,22 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var dateInput: UIDatePicker!
     @IBOutlet weak var categoryInput: UITextField!
-    
     @IBOutlet weak var noteInput: UITextField!
     @IBOutlet weak var amountInput: UITextField!
     @IBOutlet weak var navigationBar: UINavigationBar!
     
-    
-    
     var icon: String!
     var iconAmount: String!
     var textPrev = ""
-    
     var transaction = TransactionClass()
     
+    var onDoneBlock : ((Bool) -> Void)?
     
     @IBAction func cancelOnTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
     @IBAction func addTransactionOnTapped(_ sender: Any) {
-        //        print(dateInput.date)
-        //        print(expenseCategoryInput.text)
-        //        print(noteInput.text)
-        //        print(amountInput.text)
-        
         
         transaction.date = dateInput.date
         transaction.category = categoryInput.text!
@@ -78,12 +69,6 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         
         TransactionStorage.arrayTransaction.append(transaction)
         
-        //        var date: Date = Date()
-        //        var category: String = ""
-        //        var note: String = ""
-        //        var amount: String = ""
-        //        var type: String = ""
-        
         print("TRX LIST")
         for trx in TransactionStorage.arrayTransaction {
             print(trx.date)
@@ -93,17 +78,18 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
             print(trx.type)
         }
         
+        onDoneBlock!(true)
+        
         self.dismiss(animated: true)
+        
+        
         
         let amountString = amountInput.text!
         
-//        if StaticFunction.isNumeric(transaction.amount) == false
-//        {
-//            present(StaticFunction.prepareWarning(warningMessage: "Nominal must be a number!"), animated: true, completion: nil)
-//        }
-        
         
     }
+    
+    
     
     let expenseCategories = ["-- Choose Category --", "Food", "Transport", "Health", "House", "Pets", "Clothes", "Bills"]
     let incomeCategories = ["-- Choose Category --", "Deposits", "Salary", "Savings"]
@@ -118,7 +104,9 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         
-        categoryInput.textColor = UIColor.red
+        categoryInput.textColor = UIColor.black
+        noteInput.textColor = UIColor.black
+        amountInput.textColor = UIColor.black
         
         self.navigationItem.title = textPrev
         
@@ -132,18 +120,14 @@ class TransactionViewController: UIViewController, UITextFieldDelegate {
         
         pickerView.delegate = self
         pickerView.dataSource = self
-        //navigationItem.title = "What ever you want"
         
         
         categoryInput.inputView = pickerView
         categoryInput.textAlignment = .left
-        // Do any additional setup after loading the view.
         
         
-        //textLabel.text = textPrev
         self.title = "textPrev"
         navigationBar.topItem?.title = textPrev
-        //navigationController?.navigationItem.title = textPrev
         
     }
 }

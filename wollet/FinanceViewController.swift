@@ -9,66 +9,65 @@ import UIKit
 
 class FinanceViewController: UIViewController {
     var titleVc: String = ""
-//    var totalBalance: Int = 0
-//    var totalIncome: Int = 0
-//    var totalExpense: Int = 0
+   
     
-    @IBOutlet weak var totalBalanceOnFinance: UILabel!
-    
+    @IBOutlet weak var totalBalanceFinance: UITextView!
     @IBAction func expenseButtonOnTapped(_ sender: Any) {
-        //        self.titleVc = "Add Expense"
-        //        performSegue(withIdentifier: "goToAddTransaction", sender: self)
+        
         let controller = storyboard?.instantiateViewController(withIdentifier: "ModalsView") as! TransactionViewController
-        
-        //controller.modalPresentationStyle = .fullScreen
-        //controller.modalTransitionStyle = .crossDissolve
-        
         controller.textPrev = "Expense"
-        
+        controller.onDoneBlock = { result in
+            // Do something
+            self.reloadData()
+        }
         present(controller, animated: true)
         
     }
     
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if (segue.identifier == "goToAddTransaction") {
-    //            let vc = segue.destination as? TransactionViewController
-    //            vc?.textPrev = titleVc
-    ////            vc?.delegate = self
-    //        }
-    //    }
-    
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        let VC = segue.destination as? ModalViewController
-    //        VC?.title = "Add Expense"
-    //    }
     
     
     @IBAction func incomeButtonOnTapped(_ sender: Any) {
-        //print("test2")
-        //performSegue(withIdentifier: "goToAddTransaction", sender: self)
-        //        self.titleVc = "Add Income"
         let controller = storyboard?.instantiateViewController(withIdentifier: "ModalsView") as! TransactionViewController
-        
-        //controller.modalPresentationStyle = .fullScreen
-        //controller.modalTransitionStyle = .crossDissolve
-        
         controller.textPrev = "Income"
-        
+        controller.onDoneBlock = { result in
+            // Do something
+            self.reloadData()
+        }
         present(controller, animated: true)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print ("print test")
+        
+    }
     
+    func reloadData(){
+        var totalBalance: Int = 0
+        
+        for transaction in TransactionStorage.arrayTransaction {
+            print("Transaction Amount: \(transaction.amount)")
+            print(totalBalance)
+            
+            if transaction.type == "Expense" {
+                totalBalance -= Int(transaction.amount) ?? 0
+                
+            } else if transaction.type == "Income" {
+                totalBalance += Int(transaction.amount) ?? 0
+                
+            }
+            
+        }
+        
+        totalBalanceFinance.text = "Rp. \(String(totalBalance))"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-//        totalBalance = totalIncome - totalExpense
-//        let testAmount = transaksi.amount
-//        print (testAmount)
         
-    
-//       print(totalBalance)
+        reloadData()
+        
+        
     }
     
 }

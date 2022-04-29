@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9er-9T-qgS">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="y5i-Af-a4e" customClass="FinanceViewController" customModule="ooang" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xxc-dV-9PT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Finance" translatesAutoresizingMaskIntoConstraints="NO" id="l0q-Z6-Hep">
@@ -80,7 +80,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Finance" image="banknote.fill" catalog="system" id="HaP-5F-8KX"/>
                     <connections>
-                        <outlet property="totalBalanceOnFinance" destination="06K-72-fAt" id="Xr1-4l-5hH"/>
+                        <outlet property="totalBalanceFinance" destination="06K-72-fAt" id="pGH-rd-pNF"/>
                         <segue destination="11y-xv-VvW" kind="modal" identifier="goToAddTransaction" id="zHT-3z-YHB"/>
                     </connections>
                 </viewController>
@@ -93,7 +93,7 @@
             <objects>
                 <viewController storyboardIdentifier="ModalsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="11y-xv-VvW" customClass="TransactionViewController" customModule="ooang" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Pw-RT-K3X">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRD-2A-tvg">
@@ -126,7 +126,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="Ket-u7-E9M">
-                                <rect key="frame" x="37" y="119" width="120" height="34"/>
+                                <rect key="frame" x="-7" y="119" width="153" height="34"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xd-Ge-OEW">
@@ -137,7 +137,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1S-hN-duA">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="Tck-1N-2jG">
@@ -149,7 +149,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="g1c-36-OLB">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="xV8-gV-Z8g">
-                                                <rect key="frame" x="333" y="6" width="61" height="44"/>
+                                                <rect key="frame" x="313" y="6" width="61" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Save">
@@ -206,7 +206,7 @@
             <objects>
                 <viewController id="MXQ-c8-vEB" customClass="ReportViewController" customModule="ooang" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w62-RL-Som">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Recent Transaction" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QZd-md-yWe">
@@ -217,7 +217,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Ug-Ll-iXv">
-                                <rect key="frame" x="0.0" y="32" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="32" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Report" id="gMb-YD-eMW"/>
@@ -317,9 +317,9 @@
                     <tabBarItem key="tabBarItem" title="Report" image="list.bullet.rectangle.portrait.fill" catalog="system" id="BET-sC-Aa6"/>
                     <connections>
                         <outlet property="tableView" destination="rNz-5H-JpF" id="OL8-lP-Hfp"/>
-                        <outlet property="totalBalanceLabel" destination="PUh-YW-Cwi" id="r0W-9k-zKR"/>
-                        <outlet property="totalExpenseLabel" destination="Rtk-sn-fiv" id="VPP-zS-bRJ"/>
-                        <outlet property="totalIncomeLabel" destination="k1L-ag-LwL" id="UWd-Ht-w3a"/>
+                        <outlet property="totalBalanceLabel" destination="PUh-YW-Cwi" id="5kM-Hc-aIA"/>
+                        <outlet property="totalExpenseLabel" destination="Rtk-sn-fiv" id="6w2-A4-7Se"/>
+                        <outlet property="totalIncomeLabel" destination="k1L-ag-LwL" id="kOT-b0-u8F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uHm-ll-1b2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
