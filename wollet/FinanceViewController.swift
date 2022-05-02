@@ -8,8 +8,7 @@
 import UIKit
 
 class FinanceViewController: UIViewController {
-    var titleVc: String = ""
-   
+    
     
     @IBOutlet weak var totalBalanceFinance: UITextView!
     @IBAction func expenseButtonOnTapped(_ sender: Any) {
@@ -17,7 +16,6 @@ class FinanceViewController: UIViewController {
         let controller = storyboard?.instantiateViewController(withIdentifier: "ModalsView") as! TransactionViewController
         controller.textPrev = "Expense"
         controller.onDoneBlock = { result in
-            // Do something
             self.reloadData()
         }
         present(controller, animated: true)
@@ -30,7 +28,6 @@ class FinanceViewController: UIViewController {
         let controller = storyboard?.instantiateViewController(withIdentifier: "ModalsView") as! TransactionViewController
         controller.textPrev = "Income"
         controller.onDoneBlock = { result in
-            // Do something
             self.reloadData()
         }
         present(controller, animated: true)
@@ -38,7 +35,7 @@ class FinanceViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print ("print test")
+        reloadData()
         
     }
     
@@ -47,7 +44,7 @@ class FinanceViewController: UIViewController {
         
         for transaction in TransactionStorage.arrayTransaction {
             print("Transaction Amount: \(transaction.amount)")
-            print(totalBalance)
+            print("Total Balance 1: \(totalBalance)")
             
             if transaction.type == "Expense" {
                 totalBalance -= Int(transaction.amount) ?? 0
@@ -58,6 +55,8 @@ class FinanceViewController: UIViewController {
             }
             
         }
+        
+        print("Total Balance 2: \(totalBalance)")
         
         totalBalanceFinance.text = "Rp. \(String(totalBalance))"
     }

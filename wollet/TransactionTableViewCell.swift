@@ -8,7 +8,7 @@
 import UIKit
 
 class TransactionTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var iconAmountTransaction: UIImageView!
     @IBOutlet weak var amountTransaction: UILabel!
     @IBOutlet weak var categoryTransaction: UILabel!
@@ -18,13 +18,10 @@ class TransactionTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

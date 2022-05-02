@@ -1,6 +1,6 @@
 //
 //  ReportViewController.swift
-//  wollet
+//  ooang
 //
 //  Created by Ranti Sidauruk on 28/04/22.
 //
@@ -11,7 +11,7 @@ struct transaksi {
     var date: Date = Date()
     var category: String = ""
     var note: String = ""
-    var amount: String = ""
+    static var amount: String = ""
     var type: String = ""
     var icon: String = ""
 }
@@ -20,9 +20,7 @@ struct transaksi {
 
 class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var totalIncome: Int = 0
-    var totalExpense: Int = 0
-    var totalBalance: Int = 0
+    
     var textPrev = ""
     
     
@@ -36,31 +34,8 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         print ("test")
         
-        for transaction in TransactionStorage.arrayTransaction {
-            print("Transaction Amount: \(transaction.amount)")
-            print (totalIncome)
-            print (totalExpense)
-            print(totalBalance)
-            
-            if transaction.type == "Expense" {
-                totalExpense += Int(transaction.amount) ?? 0
-                
-            } else if transaction.type == "Income" {
-                totalIncome += Int(transaction.amount) ?? 0
-                
-            }
-            
-        }
+        reloadData()
         
-        totalBalance = totalIncome - totalExpense
-        
-        print("-----")
-        print (totalIncome)
-        print (totalExpense)
-        print(totalBalance)
-        totalBalanceLabel.text = "Rp. \(String(totalBalance))"
-        totalExpenseLabel.text = "Rp. \(String(totalExpense))"
-        totalIncomeLabel.text = "Rp. \(String(totalIncome))"
         
         let nib = UINib(nibName: "TransactionTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "TransactionTableViewCell")
@@ -83,9 +58,9 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let removed = TransactionStorage.arrayTransaction.remove(at: indexPath.row)
             print(TransactionStorage.arrayTransaction)
             //tableView.reloadData()
-//            let index = arraySpending.count - indexPath.row - 1
-//            updateTotal(-arraySpending[index].nominal)
-//            arraySpending.remove(at: index)
+            //            let index = arraySpending.count - indexPath.row - 1
+            //            updateTotal(-arraySpending[index].nominal)
+            //            arraySpending.remove(at: index)
             tableView.deleteRows(at: [indexPath], with: .left)
         }
         
@@ -138,11 +113,42 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func reloadData(){
+        
+        var totalIncome: Int = 0
+        var totalExpense: Int = 0
+        var totalBalance: Int = 0
+        
+        for transaction in TransactionStorage.arrayTransaction {
+            print("Transaction Amount: \(transaction.amount)")
+            
+            if transaction.type == "Expense" {
+                totalExpense += Int(transaction.amount) ?? 0
+                
+            } else if transaction.type == "Income" {
+                totalIncome += Int(transaction.amount) ?? 0
+                
+            }
+            
+        }
+        
+        totalBalance = totalIncome - totalExpense
+        
+//        print("-----")
+//        print (totalIncome)
+//        print (totalExpense)
+//        print(totalBalance)
+        totalBalanceLabel.text = "Rp. \(String(totalBalance))"
+        totalExpenseLabel.text = "Rp. \(String(totalExpense))"
+        totalIncomeLabel.text = "Rp. \(String(totalIncome))"
+    }
+    
     func fetchHistory() {
+        reloadData()
         do {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-//                print("Data Reloaded")
+                //                print("Data Reloaded")
             }
         } catch {
             print("Gagal mendapatkan data")
@@ -151,3 +157,4 @@ class ReportViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
 }
+
